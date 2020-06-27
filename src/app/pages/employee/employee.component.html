@@ -1,0 +1,50 @@
+
+<div class="row">
+  <div class="col-4">
+    <form ngForm #f='ngForm' >
+      <div class="form-group">
+        <label for="empID">Employer ID</label>
+        <input class="form-control" required #id="ngModel" (keyup.enter)="search(id.value)" ngModel id="empID" name="id" type="text">
+      </div>
+      <div class="form-group">
+        <label for="empID">Employer Name</label>
+        <input class="form-control" required ngModel id="empName"  name="name" type="text">
+      </div>
+      <div class="form-group">
+        <label for="empID">Employer Address</label>
+        <input class="form-control" required ngModel id="empAddress" name="address" type="text">
+      </div>
+      <div class="form-group">
+        <label for="empID">Employer Tp</label>
+        <input class="form-control" required ngModel id="empTP" name="tp" type="text">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" [disabled]="!f.valid" type="button" (click)="saveEmployer(f)">Save or Update</button>
+        <button class="btn btn-danger" [disabled]="!f.valid" type="button" (click)="delete(f)">Remove</button>
+        <button class="btn btn-warning" type="button" (click)="getAll()">Get All</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-8">
+    <table class="table table-bordered table-hover">
+      <thead class="bg-danger text-white">
+      <tr>
+        <th>Emp ID</th>
+        <th>Emp Name</th>
+        <th>Emp Address</th>
+        <th>Emp Tp</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of employers" (click)="select(e)">
+        <td>{{e.id}}</td>
+        <td>{{e.name}}</td>
+        <td>{{e.address}}</td>
+        <td>{{e.tp}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

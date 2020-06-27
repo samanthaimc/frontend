@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-4">
+    <div class="row">
+      <div class="col-12">
+        <form #cusForm='ngForm' ngForm>
+          <div class="form-group">
+            <label for="empID">Employer ID</label>
+            <input #id="ngModel" (keyup.enter)="searchEmp(id.value)" class="form-control" id="empID" name="id" ngModel
+                   type="text">
+          </div>
+          <div class="form-group">
+            <label for="empID">Employer Name</label>
+            <input class="form-control" id="empName" name="name" ngModel type="text">
+          </div>
+          <div class="form-group">
+            <label for="empID">Employer Address</label>
+            <input class="form-control" id="empAddress" name="address" ngModel type="text">
+          </div>
+          <div class="form-group">
+            <label for="empID">Employer Tp</label>
+            <input class="form-control" id="empTP" name="tp" ngModel type="text">
+          </div>
+        </form>
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <h2 class="pl-2">Other Details</h2>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Department | {{this.selectedDepartment.departmentName}}</li>
+            <li class="list-group-item">JobTitle | {{this.selectedJobType.jobType}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-3">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="did">Department</label>
+          <select [(ngModel)]="selectedDepartment"  class="form-control" id="did" name="did">
+            <option *ngFor="let c of departments" [ngValue]="c" >
+              {{c.departmentName}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="jtype">Job Type</label>
+          <select [(ngModel)]="selectedJobType" class="form-control" id="jtype" name="jtype">
+            <option *ngFor="let t of types" [ngValue]="t">
+              {{t.jobType}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12">
+        <form #family='ngForm' ngForm>
+          <div class="form-group">
+            <label for="empID">Member ID</label>
+            <input #fid="ngModel" (keyup.enter)="searchFamily(fid.value)" class="form-control" id="mid" name="id"
+                   ngModel
+                   type="text">
+          </div>
+          <div class="form-group">
+            <label for="mname">Member Name</label>
+            <input class="form-control" id="mname" name="memberName" ngModel type="text">
+          </div>
+          <div class="btn-group">
+            <button (click)="save()" class="btn btn-primary" type="button">Save or Update</button>
+            <button class="btn btn-danger" (click)="remove(cusForm)" type="button">Remove</button>
+            <button class="btn btn-warning" type="button">Clear All</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <table class="table table-bordered table-hover">
+      <thead class="bg-danger text-white">
+      <tr>
+        <th>Member ID</th>
+        <th>Member Name</th>
+        <th>Remove</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let f of familyMembers">
+        <td>{{f.id}}</td>
+        <td>{{f.memberName}}</td>
+        <td (click)="removeMember(f)">Delete</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

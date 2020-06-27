@@ -1,0 +1,37 @@
+
+<div class="row">
+  <div class="col-4">
+    <form ngForm #f='ngForm'>
+      <div class="form-group">
+        <label for="empID">Member ID</label>
+        <input required class="form-control" #id="ngModel" (keyup.enter)="search(id.value)" ngModel id="empID" name="id" type="text">
+      </div>
+      <div class="form-group">
+        <label for="empID">Member Name</label>
+        <input required class="form-control" id="empName" ngModel name="memberName" type="text">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" [disabled]="!f.valid" type="button" (click)="save(f)">Save or Update</button>
+        <button class="btn btn-danger" [disabled]="!f.valid" type="button" (click)="delete(f)">Remove</button>
+        <button class="btn btn-warning" type="button" (click)="getAll()">Get All</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-8">
+    <table class="table table-bordered table-hover">
+      <thead class="bg-danger text-white">
+      <tr>
+        <th>Member ID</th>
+        <th>Member Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr (click)="select(e)" *ngFor="let e of family">
+        <td>{{e.id}}</td>
+        <td>{{e.memberName}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

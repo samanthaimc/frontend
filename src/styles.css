@@ -1,0 +1,6 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.active{
+  background: rgba(68, 68, 68, 0.84) !important;
+  border: none!important;
+}
